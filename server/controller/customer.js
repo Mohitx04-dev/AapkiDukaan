@@ -28,6 +28,22 @@ exports.createCustomer = async  (req,res) => {
        res.status(500).send(err)
    }
 }
+exports.updateCustomer = (req,res) =>{
+  Customer.updateOne({id : req.body._id},{
+    FirstName : req.body.FirstName,
+    LastName : req.body.LastName,
+    Username : req.body.Username,
+      PhoneNo : req.body.PhoneNo,
+      Address : {
+        Street : req.body.Street,
+        State : req.body.State,
+        Pincode : req.body.Pincode,
+        City : req.body.City
+      }
+  }).then(data=>{
+    res.send(data)
+  })
+}
 exports.ShowCustomer = (req,res)=>{
    Customer.find({}).then(data=>{
       res.send(data)
