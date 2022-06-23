@@ -128,6 +128,10 @@ const Sales = new Mongoose.Schema({
     type: Number,
     required: true,
   },
+  Status: {
+    type: Number,
+    required: true
+  }
 });
 
 const Products = new Mongoose.Schema({

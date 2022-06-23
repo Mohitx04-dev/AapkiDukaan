@@ -39,7 +39,9 @@ route.put("/api/ChangePassword/:role/:id",Auth.ChangePassword);//Changes Passwor
 route.get("/api/GetExecutive",Auth.Auth,Auth.AuthA,executive.GetExecutive); //Get Executives
 route.delete("/api/DeleteExecutive/:id",Auth.Auth,Auth.AuthA,executive.DeleteExecutive);//Deletes executive 
 route.put("/api/PlaceOrder/",seller.recieveOrder,customer.GetOrderIds);//Placed Order
-route.get("/api/getOrdersAll/:id/:Sid",customer.getOrdersAll);
 route.get("/api/GetSales/:id",seller.GetSales);
 route.put("/api/updateCustomer/:id",customer.updateCustomer);
+route.get("/api/GetOrderbyCustomer/:id/:cid", seller.GetOrderbyCustomer);
+route.get("/api/GetOrderDetail/:id/:oid", seller.getOrderDetail);
+
 module.exports = route;

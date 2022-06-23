@@ -246,24 +246,28 @@ exports.CheckPromo = (req,res) =>{
 exports.recieveOrder = (req,res,next) => {
     console.log(req.body)
     let comm = parseInt(req.body.Total*0.05)
+    let _id = new mongoose.Types.ObjectId()
     Seller.updateOne(
         { _id: req.body.Sid },
         { $addToSet: { Sales: {
-          _id: new mongoose.Types.ObjectId(),
+          _id: _id,
           Total : req.body.Total,
           Category : req.body.Category,
           Products : req.body.Products,
           CustId : req.body.CustId,
           Type : req.body.Type,
           Commission : comm,
-          Date : new Date()
+          Date : new Date(),
+          Status: 1
         }} }
        ).then((data)=>{
-            req.body["OrderId"] = data._id;
-            next()
+        console.log(data)
+        req.body["OrderId"] = _id;
+        next()
        }).catch(e=>{
            console.log(e)
        })
+    
 }
 
 exports.GetSales = async (req,res) =>{
@@ -271,3 +275,16 @@ exports.GetSales = async (req,res) =>{
             res.send(data.Sales)
         })
     }
+exports.GetOrderbyCustomer = async (req,res) =>{
+    Seller.findOne({'_id' : req.params.id}).then(data=>{
+        data = data.Sales.filter((el)=>{
+            console.log(el.CustId)
+            return (el.CustId.toString()===req.params.cid)
+        })
+        res.send(data)
+    })
+    }
+exports.getOrderDetail = async(req,res)=>{
+    Seller.findOne( {_id:req.params.id}, { Sales : { $elemMatch: {  _id : req.params.oid } } } ).then((data)=>{
+        res.send(data.Sales[0])
+    })}
