@@ -43,5 +43,6 @@ route.get("/api/GetSales/:id",seller.GetSales);
 route.put("/api/updateCustomer/:id",customer.updateCustomer);
 route.get("/api/GetOrderbyCustomer/:id/:cid", seller.GetOrderbyCustomer);
 route.get("/api/GetOrderDetail/:id/:oid", seller.getOrderDetail);
+route.put("/api/updateOrderStatus/:oid", seller.updateOrderStatus);
 
 module.exports = route;

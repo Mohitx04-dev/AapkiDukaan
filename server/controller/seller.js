@@ -288,3 +288,10 @@ exports.getOrderDetail = async(req,res)=>{
     Seller.findOne( {_id:req.params.id}, { Sales : { $elemMatch: {  _id : req.params.oid } } } ).then((data)=>{
         res.send(data.Sales[0])
     })}
+exports.updateOrderStatus = async(req,res) => {
+    Seller.findOneAndUpdate({'Sales._id': req.params.oid}, {'$set': {
+        'Sales.$.Status': req.body.Status
+    }}).then((data)=>{
+        res.send(data)
+    })
+}
