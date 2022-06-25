@@ -148,6 +148,10 @@ const Products = new Mongoose.Schema({
     type: Mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "Products",
+  },
+  InStock : {
+    type: Boolean,
+    required: true
   }
 });
 
