@@ -101,13 +101,20 @@ const WebsiteData = new Mongoose.Schema({
  
 });
 
-
-const Sales = new Mongoose.Schema({
-  Products : [{
+const ProductData = new Mongoose.Schema({
+  Product : {
     type: Mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "Products",
-  }],
+  },
+   Quantity : {
+     type : Number,
+     required: true
+   }
+})
+
+const Sales = new Mongoose.Schema({
+  Products : [ProductData],
   CustId: {
     type: Mongoose.Schema.Types.ObjectId,
     required: true,
