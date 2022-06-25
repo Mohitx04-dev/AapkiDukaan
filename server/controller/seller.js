@@ -5,9 +5,7 @@ const mongoose = require("mongoose");
 exports.createSeller = async  (req,res) => {
     try {
         if (!req.body){
-            console.log("body ")
         }
-        console.log(req.body)
         const PersonalDetails={
             Name : req.body.Name,
             Phone : req.body.Phone,
@@ -71,7 +69,6 @@ exports.AddProducts = (req,res)=>{
           Category : req.body.Category,
         }} }
        ).then((data)=>{
-            console.log('Success')
             res.send(data)
        }).catch(e=>{
            console.log(e)
@@ -85,7 +82,6 @@ exports.DeleteProducts = (req,res)=>{
           _id : req.body.id,
         }} }
        ).then((data)=>{
-            console.log('Success')
             res.send(data)
        }).catch(e=>{
            console.log(e)
@@ -95,7 +91,6 @@ exports.DeleteProducts = (req,res)=>{
 
 exports.UpdateSetting = (req,res) =>{
     Seller.updateOne({_id : req.params.id},{WebsiteData : req.body.WebsiteData}).then((data)=>{
-        console.log('Success')
         res.send(data)
     }).catch(e=>{
        console.log(e)
@@ -148,7 +143,6 @@ exports.GetProductsbyCategory = async (req,res) =>{
                 data[i]["Name"] = v.Name
                 data[i]["Photo"] = v.Photo
                 const returnedTarget = Object.assign(v,data[i]);
-                console.log(returnedTarget)
                 data[i] = returnedTarget
                 Arr2.push(returnedTarget)
             }
@@ -156,7 +150,7 @@ exports.GetProductsbyCategory = async (req,res) =>{
 
         }
         else {
-            res.status(404).send('Not Found')   
+            res.status(200).send([])   
         }
     }).catch(e=>{
         res.status(500).send(e)
@@ -182,7 +176,6 @@ exports.CreatePromoCode = (req, res) => {
           MaxDiscount : req.body.MaxDiscount,
         }} }
        ).then((data)=>{
-            console.log('Success')
             res.send(data)
        })
   };
@@ -195,14 +188,12 @@ exports.DeletePromo = (req,res) =>{
          
         }} }
        ).then((data)=>{
-            console.log('Success')
             res.send(data)
        })
 }  
 
 exports.DeleteSeller = (req,res) =>{
     Seller.deleteOne({_id:req.params.id}).then((data)=>{
-        console.log('Success')
         res.send(data)
    })
 }
@@ -219,7 +210,6 @@ exports.GetPromoCode = (req,res) =>{
 exports.CheckPromo = (req,res) =>{
     let Code=req.body.Code
     let Total=req.body.Total
-    console.log(Code,Total)
     let MaxDiscount;
     let Discount;
     let TotalPrice;
@@ -244,7 +234,6 @@ exports.CheckPromo = (req,res) =>{
     })
 }
 exports.recieveOrder = (req,res,next) => {
-    console.log(req.body)
     let comm = parseInt(req.body.Total*0.05)
     let _id = new mongoose.Types.ObjectId()
     Seller.updateOne(
@@ -261,7 +250,6 @@ exports.recieveOrder = (req,res,next) => {
           Status: 1
         }} }
        ).then((data)=>{
-        console.log(data)
         req.body["OrderId"] = _id;
         next()
        }).catch(e=>{
@@ -278,7 +266,6 @@ exports.GetSales = async (req,res) =>{
 exports.GetOrderbyCustomer = async (req,res) =>{
     Seller.findOne({'_id' : req.params.id}).then(data=>{
         data = data.Sales.filter((el)=>{
-            console.log(el.CustId)
             return (el.CustId.toString()===req.params.cid)
         })
         res.send(data)

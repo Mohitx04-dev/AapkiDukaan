@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 exports.createProduct = (req, res, next) => {
   try {
     if (!req.body) {
-      console.log("body dedo");
     }
 
     const product = new Products({
