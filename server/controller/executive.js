@@ -49,7 +49,6 @@ exports.GetExecutive = async (req,res)=>{
 
 exports.DeleteExecutive = (req,res) =>{
     Executive.deleteOne({_id:req.params.id}).then((data)=>{
-        console.log('Success')
         res.send(data)
    })
 }

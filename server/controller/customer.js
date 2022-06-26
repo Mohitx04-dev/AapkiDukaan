@@ -50,7 +50,6 @@ exports.ShowCustomer = (req,res)=>{
    })
 }
 exports.GetCustomerbyId = (req,res)=>{
-  console.log('inside')
   Customer.findById(req.user.user._id).then(data=>{
     res.send(data)
  })
@@ -63,8 +62,6 @@ exports.GetOrderIds = (req,res) => {
         _id : req.body.OrderId
     }} }
     ).then((data)=>{
-         console.log('Success')
-         console.log(req.body.OrderId)
          res.send({_id:  req.body.OrderId})
     }).catch(e=>{
         console.log(e)

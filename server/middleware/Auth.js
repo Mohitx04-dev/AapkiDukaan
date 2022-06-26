@@ -14,7 +14,6 @@ const Executive = require("../model/executive");
 const userRegister = async (req, res, next) => {
   let params =req.originalUrl.split('/')
   params=params[3]
-  console.log(params)
   try {
     // Validate the username
     let usernameNotTaken = await validateUsername(req.body.Username,params);
@@ -55,12 +54,10 @@ const userRegister = async (req, res, next) => {
 const userLogin = async (req,res) => {
 
   let role = req.params.role
-  console.log(role)
   let { Username, Password } = req.body;
   let user;
   if(role==='Seller') {
      user = await Seller.findOne({ Username : Username, "WebsiteData.Domain" : req.body.Domain});
-     console.log(user)
   }
   else if(role==='Customer') {
      user = await Customer.findOne({ Username : Username });
@@ -117,7 +114,6 @@ const userLogin = async (req,res) => {
 const validateUsername = async (username,params) => {
   if(params==='Seller') {
     let user = await Seller.findOne({ Username : username });
-    console.log(user);
     return user ? false : true;
   }
   else if(params==='Customer'){
@@ -138,9 +134,7 @@ const validateUsername = async (username,params) => {
 };
 const ChangePassword = async (req,res) => {
   let params = req.params.role
-  console.log(params)
   let newPass = await bcrypt.hash(req.body.Password, 12)
-  console.log(newPass)
   if(params==='Seller') {
     let user = await Seller.findOneAndUpdate({_id : req.params.id},{Password : newPass})
     return user ? res.status(200).send('Done') : res.status(401).send('Failed');
@@ -246,7 +240,6 @@ const serializeUser = req => {
 
 
 const updateUser = async (user,req,res) => {
-  console.log('trying')
   const id = req.params.username;
   Customer.findOneAndUpdate({Username : id},user)
   .then((data)=>{
