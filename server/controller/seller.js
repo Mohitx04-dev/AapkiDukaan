@@ -111,6 +111,20 @@ exports.GetProducts = (req,res) =>{
         res.status(500).send(e)
     })
 }
+exports.searchProducts = (req,res) => {
+    Seller.find({_id : req.params.id}, {"Products.id" : req.body.Keyword})
+    .limit(5)
+    .then((data)=>{
+        res.status(200).send({
+            "Products" : data
+        })
+    })
+    .catch(err => {
+        res.status(400).send({
+            err : "Error Occured"
+        })
+    })
+}
 const ELprod = async (v) => Products.findOne({_id : v._id}).then((data)=>{
     return data
 })
