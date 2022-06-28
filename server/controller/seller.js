@@ -295,6 +295,18 @@ exports.updateOrderStatus = async(req,res) => {
     Seller.findOneAndUpdate({'Sales._id': req.params.oid}, {'$set': {
         'Sales.$.Status': req.body.Status
     }}).then((data)=>{
+        console.log(data)
         res.send(data)
     })
 }
+exports.updateProductDetails = async(req,res) => {
+    Seller.findOneAndUpdate({'Products._id': req.params.pid}, {'$set': {
+        'Products.$.Price': req.body.Price,
+        'Products.$.InStock': req.body.InStock,
+        'Products.$.Category': req.body.Category,
+    }}).then((data)=>{
+        console.log(data)
+        res.send(data)
+    })
+}
+
