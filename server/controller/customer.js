@@ -67,5 +67,14 @@ exports.GetOrderIds = (req,res) => {
         console.log(e)
     })
 }
+exports.getShippingAddress = (req,res,next)=>{
+  Customer.findOne({_id : req.body.CustId}).then((data)=>{
+    req.body["Shipping"] = data.Address
+    req.body["CustName"] = data.FirstName +" "+ data.LastName
+    next()
+  }).catch(e=>{
+    console.log(e)
+  })
+}
 
 

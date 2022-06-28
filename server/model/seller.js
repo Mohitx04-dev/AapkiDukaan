@@ -110,9 +110,30 @@ const ProductData = new Mongoose.Schema({
    Quantity : {
      type : Number,
      required: true
+   },
+   Price : {
+    type : Number,
+    required: true
    }
 })
-
+const Address = new Mongoose.Schema({
+  Street : {
+      type:String,
+      required:true
+  },
+  City:{
+      type:String,
+      required:true
+  },
+  Pincode:{
+      type:Number,
+      required:true
+  },
+  State:{
+      type: String,
+      required:true
+  }
+})
 const Sales = new Mongoose.Schema({
   Products : [ProductData],
   CustId: {
@@ -120,6 +141,11 @@ const Sales = new Mongoose.Schema({
     required: true,
     ref: "Customers",
   },
+  CustName: {
+    type: String,
+    required: true
+  },
+  Shipping : Address,
   Total: {
     type: Number,
     required: true,

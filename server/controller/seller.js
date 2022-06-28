@@ -261,7 +261,9 @@ exports.recieveOrder = (req,res,next) => {
           Type : req.body.Type,
           Commission : comm,
           Date : new Date(),
-          Status: 1
+          Status: 1,
+          CustName : req.body.CustName,
+          Shipping : req.body.Shipping
         }} }
        ).then((data)=>{
         req.body["OrderId"] = _id;

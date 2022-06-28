@@ -38,7 +38,7 @@ route.delete("/api/DeleteSeller/:id",Auth.Auth,Auth.AuthA,seller.DeleteSeller);/
 route.put("/api/ChangePassword/:role/:id",Auth.ChangePassword);//Changes Password
 route.get("/api/GetExecutive",Auth.Auth,Auth.AuthA,executive.GetExecutive); //Get Executives
 route.delete("/api/DeleteExecutive/:id",Auth.Auth,Auth.AuthA,executive.DeleteExecutive);//Deletes executive 
-route.put("/api/PlaceOrder/",seller.recieveOrder,customer.GetOrderIds);//Placed Order
+route.put("/api/PlaceOrder/",customer.getShippingAddress,seller.recieveOrder,customer.GetOrderIds);//Placed Order
 route.get("/api/GetSales/:id",seller.GetSales);
 route.put("/api/updateCustomer/:id",customer.updateCustomer);
 route.get("/api/GetOrderbyCustomer/:id/:cid", seller.GetOrderbyCustomer);
