@@ -67,6 +67,7 @@ exports.AddProducts = (req,res)=>{
           _id : req.body.ProductId,
           Price : req.body.Price,
           Category : req.body.Category,
+          InStock : req.body.InStock
         }} }
        ).then((data)=>{
             res.send(data)
