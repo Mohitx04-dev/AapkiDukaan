@@ -15,7 +15,7 @@ function App() {
       <Router>
         
         {
-          domainArr.length===1 ? 
+          domainArr.length===2 ? 
           <Routes>
           <Route path={"/executive/*"} element={<AdminE/>} ></Route> 
           <Route exact path="/*" element={<PublicMain/>} >   </Route>
