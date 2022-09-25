@@ -7,7 +7,7 @@ import axios from 'axios'
 import AdminAD from "./Admin-AD";
 import AdminE from "./Admin-E";
 function App() {
-  axios.defaults.baseURL = 'https://localhost:5000'
+  // axios.defaults.baseURL = 'https://localhost:5000'
   let subDomain  = window.location.host.split('.')[0]
   let domainArr = (window.location.host.split('.'))
   return (
