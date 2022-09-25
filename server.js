@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended : true}))
 app.use('/', require('./server/routes/router'))
 app.use(uploads)
   app.use(express.static(path.join(__dirname, 'client/build')));
-  app.get('/', function (req, res) {
+  app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
   });
 app.listen(5000, () => {
