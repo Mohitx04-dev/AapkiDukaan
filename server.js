@@ -24,5 +24,5 @@ app.use(uploads)
     res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
   });
 app.listen(process.env.PORT || 6000, () => {
-  console.log("listening on port 5000");
+  console.log("listening on port");
 });
