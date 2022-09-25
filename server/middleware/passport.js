@@ -1,7 +1,6 @@
 
 
 
-const { SECRET } = require("../config");
 const { Strategy, ExtractJwt } = require("passport-jwt");
 const Seller = require("../model/seller");
 const Executive = require("../model/executive");
@@ -12,8 +11,9 @@ const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.SECRET
 };
-module.exports = passportS  =>  {
-    passportS.use('jwt', new Strategy(opts, async (payload, done) => {
+module.exports = passport  =>  {
+  passport.use(
+      new Strategy(opts, async (payload, done) => {
       const FindinSeller = await Seller.findById(payload.user_id)
       const FindinAdmin = await Admin.findById(payload.user_id)
       const FindinExecutive = await Executive.findById(payload.user_id)

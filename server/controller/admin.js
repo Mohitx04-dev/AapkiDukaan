@@ -17,3 +17,5 @@ exports.newAdmin = (req, res) => {
     res.status(500).send(err);
   }
 };
+
+//all products

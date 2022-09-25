@@ -13,15 +13,16 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.disable('etag');
 app.use(passport.initialize());
-app.use(passport.session());
-require("./server/middleware/passportS")(passport);
-
 connectDB();
+require("./server/middleware/passport")(passport);
+app.use(passport.session());
 app.use(express.urlencoded({ extended : true}))
 app.use('/', require('./server/routes/router'))
 app.use(uploads)
-
-
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
+  });
 app.listen(5000, () => {
   console.log("listening on port 5000");
 });

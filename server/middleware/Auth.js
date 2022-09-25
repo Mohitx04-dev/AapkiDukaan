@@ -6,6 +6,7 @@ const Seller = require("../model/seller");
 const { SECRET } = require("../config");
 const Admin = require("../model/admin");
 const Executive = require("../model/executive");
+const { ExtractJwt } = require("passport-jwt/lib");
 
 /**
  * @DESC To register the user (ADMIN, SUPER_ADMIN, USER)
@@ -55,6 +56,7 @@ const userLogin = async (req,res) => {
 
   let role = req.params.role
   let { Username, Password } = req.body;
+  console.log(Username,Password)
   let user;
   if(role==='Seller') {
      user = await Seller.findOne({ Username : Username, "WebsiteData.Domain" : req.body.Domain});
@@ -160,7 +162,7 @@ const ChangePassword = async (req,res) => {
  */
 
 const Auth  = (req,res,next) => { 
-  passport.authenticate("jwt", { session: false })(req,res,next) 
+  passport.authenticate("jwt", { session: false } )(req,res,next) 
 }
 const AuthS = (req,res,next) => {
   if(req.user.role==='Seller') {
@@ -195,6 +197,7 @@ const AuthA = (req,res,next) => {
   }
 }
 const AuthAE = (req,res,next) => {
+  console.log(req.user)
   if(req.user.role==='Admin' || req.user.role==='Executive') {
     next()
   }

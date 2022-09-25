@@ -60,7 +60,16 @@ const Billing = new Mongoose.Schema({
     type: Date,
     required: true,
   },
+  TotalSale : {
+    type : String,
+    required : true
+  },
+  Commission : {
+    type: Number,
+    required : true
+  }
 });
+
 
 
 const WebsiteData = new Mongoose.Schema({

@@ -12,7 +12,7 @@ const Admin = require("../controller/admin");
 route.get("/api/findSellerbyDomain/:domain",seller.findSellerbyDomain); //MAIN API 
 route.post("/api/createProduct",Auth.Auth,Auth.AuthS,products.createProduct); //Create Product in Product Pool
 route.put("/api/CreatePromoCode/:id",Auth.Auth,Auth.AuthS,seller.CreatePromoCode); //Creates promocode for a seller
-route.post("/api/create/Seller", Auth.userRegister, seller.createSeller); // Creates User
+route.post("/api/create/Seller", Auth.userRegister,seller.checkDomain, seller.createSeller); // Creates User
 route.post("/api/create/Customer", Auth.userRegister, customer.createCustomer); //Creates Seller
 route.post("/api/create/Admin",Auth.userRegister,Admin.newAdmin);
 route.post("/api/create/Executive",Auth.userRegister,executive.createExecutive); 

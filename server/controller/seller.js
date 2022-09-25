@@ -1,50 +1,56 @@
 var Seller = require('../model/seller')
 var Products = require('../model/products')
 const mongoose = require("mongoose");
-
+exports.checkDomain = async (req,res,next) => {
+   const status = await Seller.exists({'WebsiteData.Domain' : req.body.Domain})
+   if(status) {
+    res.status(404).send("Domain Already Exists")
+   }else{
+    next()
+   }
+}
 exports.createSeller = async  (req,res) => {
-    try {
-        if (!req.body){
-        }
-        const PersonalDetails={
-            Name : req.body.Name,
-            Phone : req.body.Phone,
-            ShopName : req.body.ShopName,
-            Address : req.body.Address,
-            AadharNo : req.body.AadharNo
-        }
-
-        const WebsiteData={
-            Domain : req.body.Domain,
-            PayTM : req.body.PayTM,
-            GST : req.body.GST,
-            Categories : req.body.Categories,
-            Color : req.body.Color,
-            Title : req.body.Title,
-            Sphone : req.body.Sphone,
-            Semail : req.body.Semail
-        }
+            try {
+                if (!req.body){
+                }
+                const PersonalDetails={
+                    Name : req.body.Name,
+                    Phone : req.body.Phone,
+                    ShopName : req.body.ShopName,
+                    Address : req.body.Address,
+                    AadharNo : req.body.AadharNo
+                }
         
-        const seller = new Seller({
-            PersonalDetails : PersonalDetails,
-            WebsiteData : WebsiteData,
-            Username : req.body.Username,
-            Password : req.body.Password,
-            Email : req.body.Email,
-
-        })
-        await seller.save()
-        res.status(200).send(seller)
-
-    }catch(err) {
-        console.log(err)
-        res.status(500).send(err)
-    }
+                const WebsiteData={
+                    Domain : req.body.Domain,
+                    PayTM : req.body.PayTM,
+                    GST : req.body.GST,
+                    Categories : req.body.Categories,
+                    Color : req.body.Color,
+                    Title : req.body.Title,
+                    Sphone : req.body.Sphone,
+                    Semail : req.body.Semail
+                }
+                
+                const seller = new Seller({
+                    PersonalDetails : PersonalDetails,
+                    WebsiteData : WebsiteData,
+                    Username : req.body.Username,
+                    Password : req.body.Password,
+                    Email : req.body.Email,
+        
+                })
+                await seller.save()
+                res.status(200).send(seller)
+        
+            }catch(err) {
+                console.log(err)
+                res.status(500).send(err)
+            }
 }
 exports.Check = async(req,res) => {
     res.send({message : "All Good"})
 }
-
 
 exports.findSellerbyDomain = (req,res) => {
     let domain = req.params.domain;
@@ -149,7 +155,7 @@ const ELprod = async (v) => Products.findOne({_id : v._id}).then((data)=>{
 exports.GetProductsbyCategory = async (req,res) =>{
     Seller.findById(req.params.id).then(async (data)=>{
          data = data.Products.filter((el)=>{
-            return (el.Category===req.body.Category)
+            return (el.Category===req.body.Category && el.InStock)
         })
         if(data.length>0) {
             let Arr2=[];
