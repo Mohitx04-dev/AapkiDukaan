@@ -23,6 +23,6 @@ app.use(uploads)
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
   });
-app.listen(5000, () => {
+app.listen(process.env.PORT || 6000, () => {
   console.log("listening on port 5000");
 });
