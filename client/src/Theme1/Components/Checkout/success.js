@@ -2,6 +2,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { useToken } from '../../Contexts/CustomerContext'
 import { useSellerId } from '../../Contexts/SellerContext'
 import CartBox from '../CartBox'
 import ProgressDiv from '../FormComponents/progress'
@@ -9,9 +10,10 @@ function Success(props) {
     const { id } = useParams();
     const [Order, setOrder] = useState()
     let sid = useSellerId()
+    let headers = useToken()
     const [Products, setProducts] = useState([])
     useEffect(() => {
-        axios.get('/api/GetOrderDetail/'+sid+'/'+id).then((data)=>{
+        axios.get('/api/GetOrderDetail/'+sid+'/'+id, {headers : headers}).then((data)=>{
             setOrder(data.data)
             data.data.Products.forEach(element => {
                 axios.get('/api/getFullProduct/'+sid+'/'+element.Product).then ((d)=>{

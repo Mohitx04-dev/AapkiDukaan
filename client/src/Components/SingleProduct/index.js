@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { useToken } from '../../Admin-S/Contexts/token';
 import { useSellerId } from '../../Theme1/Contexts/SellerContext';
 import Worder from '../Widgets/Order'
 import Wproduct from '../Widgets/Product';
@@ -25,8 +26,9 @@ function SingleOrder() {
     let sid = useSellerId()
     const [Products, setProducts] = useState([])
     const [Loading, setLoading] = useState(true)
+    const headers = useToken()
     useEffect(() => {
-        axios.get('/api/GetOrderDetail/'+sid+'/'+id).then((data)=>{
+        axios.get('/api/GetOrderDetail/'+sid+'/'+id, { headers: headers }).then((data)=>{
             setOrder(data.data)
             data.data.Products.forEach(element => {
                 axios.get('/api/getFullProduct/'+sid+'/'+element.Product).then ((d)=>{
@@ -49,7 +51,7 @@ function SingleOrder() {
                 e.preventDefault()
                 axios.put('/api/updateOrderStatus/'+Order._id,{
                     Status : e.target[0].value
-                }).then(()=>{
+                },{headers : headers}).then(()=>{
                     alert('Updated Succesfully')
                     window.location.reload()
                 }).catch((e)=>{

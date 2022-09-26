@@ -27,7 +27,7 @@ function Client() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const Delete = (row) =>{
-        axios.delete("/api/DeleteSeller/"+row._id,).then(()=>{
+        axios.delete("/api/DeleteSeller/"+row._id,  { headers: headers }).then(()=>{
             alert('Delete Successly')
             window.location.reload()
         })

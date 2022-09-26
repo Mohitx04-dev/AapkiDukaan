@@ -21,7 +21,7 @@ function ProductCard(props) {
         <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden lg:h-80 lg:aspect-none">
         <Link to="#">
           <img
-              src={'http://localhost:5000/image/'+product.Photo}
+              src={'http://aapkidukaan.live/image/'+product.Photo}
               className="w-full h-full object-center object-cover lg:w-full lg:h-full"
               alt={product.Name}
           />

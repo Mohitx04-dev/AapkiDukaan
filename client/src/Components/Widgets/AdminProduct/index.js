@@ -9,7 +9,7 @@ function WAProduct(props) {
                         <div className="flex flex row">
                             <div className="mx-10 flex">
                             <img
-                            src={'http://localhost:5000/image/'+Product.Photo}
+                            src={'http://aapkidukaan.live/image/'+Product.Photo}
                             className="h-20 w-20 rounded-xl object-center object-cover"
                             alt={Product.Name}
                             />

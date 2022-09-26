@@ -2,8 +2,10 @@ import React , {useContext, useState, useEffect} from 'react'
 import axios from 'axios'
 const CustomerContext = React.createContext()
 
-
-
+const TokenContext = React.createContext()
+export function useToken() {
+    return useContext(TokenContext)
+}
 export function useCustomer() {
     return useContext(CustomerContext)
 }
@@ -33,9 +35,11 @@ function CustomerProvider({children}) {
          }
     }
     return (
+        <TokenContext.Provider value={headers}>
         <CustomerContext.Provider value={Customer}>
                         {children}
         </CustomerContext.Provider>
+        </TokenContext.Provider>
     )
 }
 

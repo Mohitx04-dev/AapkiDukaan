@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCustomer } from "../../Contexts/CustomerContext";
+import { useCustomer, useToken } from "../../Contexts/CustomerContext";
 import { useSellerId } from "../../Contexts/SellerContext";
 function OrderHistory() {
   const [AllOrders, setAllOrders] = useState([])
   let sid = useSellerId()
   let cid = useCustomer()._id
+  let headers = useToken()
   useEffect(() => {
-    axios.get('/api/GetOrderbyCustomer/'+sid+'/'+cid).then((data)=>{
+    axios.get('/api/GetOrderbyCustomer/'+sid+'/'+cid, {headers : headers}).then((data)=>{
       setAllOrders(data.data)
     })
      // eslint-disable-next-line react-hooks/exhaustive-deps

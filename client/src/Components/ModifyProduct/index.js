@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useToken } from '../../Admin-S/Contexts/token'
 import { useSellerId } from '../../Theme1/Contexts/SellerContext'
 import Wproduct from '../Widgets/Product'
 import WupdateProduct from '../Widgets/UpdateProduct'
@@ -13,6 +14,7 @@ function ModifyProduct() {
     let sid=useSellerId()
     const {id} = useParams()
     const [Product, setProduct] = useState()
+    const headers = useToken()
     useEffect(() => {
       axios.get("/api/getFullProduct/"+sid+"/"+id).then((data)=>{
          setProduct(data.data)
@@ -34,7 +36,7 @@ function ModifyProduct() {
                 Price : e.target[1].value,
                 InStock : e.target[2].value
             }
-            axios.put('/api/updateProductDetails/'+Product._id,data).then((d)=>{
+            axios.put('/api/updateProductDetails/'+Product._id,data,  { headers: headers }).then((d)=>{
                 if(d) { alert('Updated Successfully')
                 window.location.reload() }
             }).catch((e)=>{

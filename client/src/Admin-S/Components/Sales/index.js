@@ -3,11 +3,13 @@ import { UnivTable } from '../../../Components/Table'
 import { useSellerId } from '../../../Theme1/Contexts/SellerContext'
 import axios from 'axios'
 import Worder from '../../../Components/Widgets/Order'
+import { useToken } from '../../Contexts/token'
 function Sales() {
     let Sid=useSellerId()
+    let headers = useToken()
     const [Order , setOrder] = useState()
     useEffect(() => {
-        axios.get("/api/GetSales/"+Sid).then((data)=>{
+        axios.get("/api/GetSales/"+Sid,{headers: headers}).then((data)=>{
           setOrder(data.data)
         }).catch((e)=>{
         })

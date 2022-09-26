@@ -10,7 +10,7 @@ function ProductCardH(props) {
         <div className="grid grid-cols-3 border-searchBarGrey rounded-lg">
         <Link to={'/product/'+props.product._id} className="h-56 m-auto">
         <img
-            src={'http://localhost:5000/image/'+props.product.Photo}
+            src={'http://aapkidukaan.live/image/'+props.product.Photo}
             className="w-100 max-h-full object-contain"
             alt={props.product.Name}
           />

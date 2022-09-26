@@ -7,14 +7,14 @@ import axios from 'axios'
 import AdminAD from "./Admin-AD";
 import AdminE from "./Admin-E";
 function App() {
-  // axios.defaults.baseURL = 'https://aapkidukaan-pm.herokuapp.com/'
+  axios.defaults.baseURL = 'https://aapkidukaan.live/'
   let subDomain  = window.location.host.split('.')[0]
   let domainArr = (window.location.host.split('.'))
   return (
     <div className="App overflow-x-hidden">
       <Router>
         {
-          domainArr.length===1 ? 
+          domainArr.length===2 ? 
           <Routes>
           <Route path={"/executive/*"} element={<AdminE/>} ></Route> 
           <Route exact path="/*" element={<PublicMain/>} >   </Route>

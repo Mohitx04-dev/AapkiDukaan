@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import Login from "../../../Components/Login";
 import OrderHistory from "../OrderHistory";
-import {useCustomer} from '../../Contexts/CustomerContext'
+import {useCustomer, useToken} from '../../Contexts/CustomerContext'
 function TextFieldForm(props) {
   return (
     <div className="col-span-6 sm:col-span-1">
@@ -119,6 +119,7 @@ export function AccountBox (props) {
 }
 function Account() {
   let Customer = useCustomer()
+  let headers = useToken()
   let page = window.location.pathname.split('/')[1]
 
   return (
@@ -149,7 +150,7 @@ function Account() {
                        Pincode : e.target[6].value,
                        City : e.target[7].value ,
                    }
-                   axios.put('/api/updateCustomer/'+Customer._id,Article).then(()=>{
+                   axios.put('/api/updateCustomer/'+Customer._id,Article,{headers : headers}).then(()=>{
                      alert('Succesful')
                    })
                   }

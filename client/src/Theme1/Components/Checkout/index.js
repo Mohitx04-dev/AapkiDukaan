@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Textfield from "../FormComponents/textfield";
 import axios from "axios";
 import { useSellerId } from "../../Contexts/SellerContext";
-import { useCustomer } from "../../Contexts/CustomerContext";
+import { useCustomer, useToken } from "../../Contexts/CustomerContext";
 
 function Checkout() {
   const products = useCart();
@@ -24,7 +24,7 @@ function Checkout() {
   const [Applied, setApplied] = useState(false)
   let id = useSellerId();
   let Customer = useCustomer()
-  
+  let headers = useToken()
   return (
     <div>
       <p className="text-left text-2xl m-2">Checkout </p>
@@ -49,7 +49,7 @@ function Checkout() {
                               <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
                                 <img
                                   src={
-                                    "http://localhost:5000/image/" +
+                                    "http://aapkidukaan.live/image/" +
                                     product.Photo
                                   }
                                   alt={product.Name}
@@ -167,7 +167,7 @@ function Checkout() {
                           Type : 'COD',
                           
                         }
-                        axios.put('api/PlaceOrder',Article).then((data)=>{
+                        axios.put('api/PlaceOrder',Article,{headers : headers}).then((data)=>{
                           alert('Order Placed')
                           window.location.pathname = '/order/'+data.data._id
                         }).catch(e=>{

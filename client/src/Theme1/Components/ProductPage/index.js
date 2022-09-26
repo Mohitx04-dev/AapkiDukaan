@@ -38,7 +38,7 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 w-1/2">
           <div className="hidden aspect-w-3 m-auto w-3/4 mt-5 aspect-h-4 rounded-lg overflow-hidden lg:block">
             <img
-              src={'http://localhost:5000/image/'+product.Photo}
+              src={'http://aapkidukaan.live/image/'+product.Photo}
               className="w-full h-full object-center object-cover"
               alt={product.Name}
             />
