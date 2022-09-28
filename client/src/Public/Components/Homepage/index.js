@@ -20,7 +20,7 @@ function Home() {
           </h4>
         </div>
         <div className=" mt-4 ml-80 w-28 bg-lightgreen rounded-full ">
-          <Link to="#" className="text-white  text-center  ">
+          <Link to="signup" className="text-white  text-center  ">
             {" "}
             Create Now
           </Link>

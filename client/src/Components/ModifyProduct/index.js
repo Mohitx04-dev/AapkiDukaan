@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useToken } from '../../Admin-S/Contexts/token'
 import { useSellerId } from '../../Theme1/Contexts/SellerContext'
-import Wproduct from '../Widgets/Product'
 import WupdateProduct from '../Widgets/UpdateProduct'
 
 
@@ -20,6 +19,7 @@ function ModifyProduct() {
          setProduct(data.data)
          setLoading(false)
       })
+          // eslint-disable-next-line
     }, [])
     return(
         <> 

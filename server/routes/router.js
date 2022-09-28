@@ -41,8 +41,8 @@ route.delete("/api/DeleteExecutive/:id",Auth.Auth,Auth.AuthA,executive.DeleteExe
 route.put("/api/PlaceOrder/",Auth.Auth, Auth.AuthC,customer.getShippingAddress,seller.recieveOrder,customer.GetOrderIds);//Placed Order
 route.get("/api/GetSales/:id",Auth.Auth,Auth.AuthS,seller.GetSales);
 route.put("/api/updateCustomer/:id", Auth.Auth, Auth.AuthC, customer.updateCustomer);
-route.get("/api/GetOrderbyCustomer/:id/:cid",Auth.Auth, Auth.AuthC, seller.GetOrderbyCustomer);
-route.get("/api/GetOrderDetail/:id/:oid",Auth.Auth,Auth.AuthS,seller.getOrderDetail);
+route.get("/api/GetOrderbyCustomer/:id/:cid",Auth.Auth, Auth.AuthSC, seller.GetOrderbyCustomer);
+route.get("/api/GetOrderDetail/:id/:oid",Auth.Auth,Auth.AuthSC,seller.getOrderDetail);
 route.put("/api/updateOrderStatus/:oid",Auth.Auth,Auth.AuthS,seller.updateOrderStatus);
 route.get("/api/searchProducts/:id",seller.searchProducts);
 route.put("/api/updateProductDetails/:pid",Auth.Auth, Auth.AuthS, seller.updateProductDetails);

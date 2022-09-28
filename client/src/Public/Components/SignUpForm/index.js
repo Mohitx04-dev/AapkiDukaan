@@ -50,6 +50,7 @@ function TextFieldForm(props) {
             name={props.name}
             defaultValue={props.Form[name]}
             onChange={props.handleChange}
+            type={props.Type}
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />{" "}
         </div>
@@ -129,12 +130,14 @@ function WebsiteDetails(props) {
                   label="Password"
                   name="Password"
                   Form={props.Form}
+                  Type={"password"}
                   handleChange={props.handleChange}
                 />
                 <TextFieldForm
                   label="Confirm Password"
                   name="ConfirmPassword"
                   Form={props.Form}
+                  Type={"password"}
                   handleChange={props.handleChange}
                 />
               </div>
@@ -305,13 +308,13 @@ function SignUpForm() {
   }
   function submit() {
       axios.post('/api/create/Seller',Form).then((data)=>{
-        alert('You are being redirected to your website')
-        // window.location.href = Form.title+'localhost:3000'
+        alert(Form.Domain + "aapkidukaan.live is live now." )
+        window.location.reload()
 
       }
       ).catch(e=>{
 if(e.response){
-       alert('Domain name already taken, please try something else.')
+       alert('Domain name or Username already taken, please try something else.')
         }      })
   }
   let ButtonClasses =

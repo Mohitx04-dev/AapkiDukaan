@@ -42,13 +42,13 @@ function Theme1() {
     return (
         
         <SellerDataProvider>
-        <CartProvider>
         <CustomerProvider >
+        <CartProvider>
         <div className="overflow-hidden"> 
             <Main Arr={Categories}/>
         </div>
-        </CustomerProvider >
         </CartProvider>
+        </CustomerProvider >
         </SellerDataProvider>
     )
 }

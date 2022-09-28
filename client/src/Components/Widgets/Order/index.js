@@ -1,13 +1,7 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Worder(props) {
-    const [Customer, setCustomer] = useState()
-    useEffect(() => {
-    //   axios.get('')
-    }, [])
-    
   return (
     <div className=" bg-WbgGrey m-5 rounded-xl">
     <div className="flex flex-row justify-between p-2">

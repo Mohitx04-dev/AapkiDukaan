@@ -1,4 +1,5 @@
 import React , {useContext, useState} from 'react'
+import { useCustomer } from './CustomerContext'
 
 const CartContext = React.createContext()
 const CartUpdateContext = React.createContext()
@@ -17,23 +18,25 @@ export function useCartOpen() {
 }
 
 function CartProvider({children}) {
-    const [Cart,setCart] = useState([
-        
-    ])
+    const User = useCustomer()
+    const [Cart,setCart] = useState([])
     const [open, setOpen] = useState(false)
     function AddProduct(item) {
-        const Product = Cart.find(el=> {
-            return (el._id===item._id) ;
-        })
-        if(Product){
-            Product["quantity"]+=item["quantity"];
+        if(User){
+            const Product = Cart.find(el=> {
+                return (el._id===item._id) ;
+            })
+            if(Product){
+                Product["quantity"]+=item["quantity"];
+            }
+            else{
+                setCart(old => [...old,item]);
+            }
+            setOpen(true)
         }
         else{
-            setCart(old => [...old,item]);
+            window.alert('Login First')
         }
-        setOpen(true)
-      
-
     }
     const closeCart = ()=>{
         setOpen(false)

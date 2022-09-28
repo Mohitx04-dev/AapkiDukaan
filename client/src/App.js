@@ -6,12 +6,25 @@ import PublicMain from './Public'
 import axios from 'axios'
 import AdminAD from "./Admin-AD";
 import AdminE from "./Admin-E";
+import { useEffect, useState } from "react";
 function App() {
+const [width, setWidth] = useState(window.innerWidth);
+function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+}
+useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+        window.removeEventListener('resize', handleWindowSizeChange);
+    }
+}, []);
+const isMobile = width <= 768;
   axios.defaults.baseURL = 'https://aapkidukaan.live/'
   let subDomain  = window.location.host.split('.')[0]
   let domainArr = (window.location.host.split('.'))
   return (
     <div className="App overflow-x-hidden">
+      {!isMobile ? 
       <Router>
         {
           domainArr.length===2 ? 
@@ -26,13 +39,12 @@ function App() {
          <Route exact path={"/admin/*"} element={<AdminS />} ></Route>  
          </Routes>
         }
-      </Router>
-      {/* <Router>
-        <Routes>
-        </Routes>
-      </Router> */}
+      </Router>    
+      :
+      <div className="App text-xl mb-10 mt-10">Mobile view not yet supported.</div>
+       }
     </div>
-  );
+  ); 
 }
 
 export default App;

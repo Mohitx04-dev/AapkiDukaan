@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Account from "../Account";
 import {
   useCart,
-  useCartUpdate,
 } from "../../Contexts/CartContext";
 import { Link } from "react-router-dom";
 import Textfield from "../FormComponents/textfield";
@@ -12,14 +11,14 @@ import { useCustomer, useToken } from "../../Contexts/CustomerContext";
 
 function Checkout() {
   const products = useCart();
-  const CartUpdate = useCartUpdate();
+  // const CartUpdate = useCartUpdate();
   let total = 0;
   products.forEach((element) => {
     total += parseInt(element.Price * element.quantity);
     // setTotal(total)
   });
   const [Total, setTotal] = useState(total)
-  const RemoveProduct = CartUpdate.RemoveProduct;
+  // const RemoveProduct = CartUpdate.RemoveProduct;
   const [Promo, setPromo] = useState("");
   const [Applied, setApplied] = useState(false)
   let id = useSellerId();
@@ -70,7 +69,7 @@ function Checkout() {
                                 </div>
                                 <div className="flex-1 flex items-end justify-between text-sm">
                                   <div className="flex">
-                                    <button
+                                    {/* <button
                                       type="button"
                                       onClick={(e) => {
                                         e.preventDefault();
@@ -79,7 +78,7 @@ function Checkout() {
                                       className="font-medium text-indigo-600 hover:text-indigo-500"
                                     >
                                       Remove
-                                    </button>
+                                    </button> */}
                                   </div>
                                 </div>
                               </div>
@@ -150,14 +149,12 @@ function Checkout() {
                          
                         let productIds = [];
                         products.map(el=>{
-                          if(el.InStock){
                           let x = {
                             "Product" : el._id,
                             "Quantity" : el.quantity,
                             "Price" : el.Price
                           }
                           return productIds.push(x)
-                         }
                         })
                         let Article = {
                           Sid : id,

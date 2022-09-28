@@ -1,20 +1,19 @@
 import { Fragment} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
 import { useCart, useCartUpdate, useCartOpen} from '../../Contexts/CartContext'
 import { Link } from 'react-router-dom'
 
 function CartBox (props) {
     const products = useCart()
     const CartUpdate = useCartUpdate()
-    const CartOpen = useCartOpen()
+    // const CartOpen = useCartOpen()
     let total=0;
     products.forEach(element => {
         total+=parseInt(element.Price * element.quantity)
     });
     const RemoveProduct = CartUpdate.RemoveProduct
-    const setOpen = CartOpen.setOpen
-    const close = useCartOpen().closeCart
+    // const setOpen = CartOpen.setOpen
+    // const close = useCartOpen().closeCart
     return (
         <div className="absolute inset-0 overflow-hidden">
         <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex bg-w">
@@ -99,7 +98,7 @@ function CartBox (props) {
                       Checkout
                     </Link>
                   </div>
-                  <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
+                  {/* <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
                     <p>
                       or{' '}
                       <button
@@ -110,7 +109,7 @@ function CartBox (props) {
                         Continue Shopping<span aria-hidden="true"> &rarr;</span>
                       </button>
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

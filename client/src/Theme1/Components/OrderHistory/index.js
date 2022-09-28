@@ -18,7 +18,7 @@ function OrderHistory() {
 
   return (
     <div>
-        <p className="text-left text-2xl mb-5">Order History</p>
+        <p className="text-left text-2xl  mt-5 mb-5">Order History</p>
       <table class="table-auto shadow overflow-hidden sm:rounded-md p-2 text-black text-opacity-80 min-w-full">
         <thead>
      

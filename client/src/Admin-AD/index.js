@@ -8,7 +8,7 @@ import TabsTable from '../Components/TabsTable';
 import AddProduct from '../Components/AddProduct';
 import Client from '../Components/Clients';
 import ProductPool from '../Components/AdminProductPool/indexcopy';
-import TokenProvider, { useToken } from './Contexts/';
+import TokenProvider from './Contexts/';
 import Logout from '../Components/Logout';
 import Executive from '../Components/Executive';import Greeting from '../Components/Greeting';
 ;

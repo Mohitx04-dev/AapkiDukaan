@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import  { UnivTable } from "../Table";
 import { Link } from "react-router-dom";
 import { useSellerId } from "../../Theme1/Contexts/SellerContext";
 import axios from "axios";
@@ -19,12 +18,12 @@ function Inventory() {
       });
                  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const Delete = (row) => {
-    axios.put("/api/DeleteProducts/" + Sid, { id: row._id },{headers : headers}).then(() => {
-      alert("Delete Successly");
-      window.location.reload();
-    });
-  };
+  // const Delete = (row) => {
+  //   axios.put("/api/DeleteProducts/" + Sid, { id: row._id },{headers : headers}).then(() => {
+  //     alert("Delete Successly");
+  //     window.location.reload();
+  //   });
+  // };
   if (isLoading) {
     return <div>Loading</div>;
   } else {

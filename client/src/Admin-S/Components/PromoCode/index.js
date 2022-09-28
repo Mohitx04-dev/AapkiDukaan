@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from 'react'
-import {UnivTable} from '../../../Components/Table'
 import axios from 'axios';
 import {
     useSellerId,

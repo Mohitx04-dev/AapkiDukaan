@@ -1,5 +1,4 @@
 import {useState,useEffect} from 'react'
-import { UnivTable } from '../../../Components/Table'
 import { useSellerId } from '../../../Theme1/Contexts/SellerContext'
 import axios from 'axios'
 import Worder from '../../../Components/Widgets/Order'

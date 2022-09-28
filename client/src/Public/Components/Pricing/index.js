@@ -1,59 +1,8 @@
 import React from 'react'
 import PlanBox from '../PlBox'
 import PriceBox from '../PrBox'
-import Sbox from '../SBox'
 
 function Pricing() {
-    let Array = [
-        {
-          col1 : "Electronics & Electrical ",
-          col2 : "4% "
-         },
-         {
-            col1 : "Fruits & Vegetables ",
-            col2 : "8% "
-           },
-           {
-            col1 : "Cosmetics ",
-            col2 : "10% "
-           },
-           {
-            col1 : "Dairy Items ",
-            col2 : "3% "
-           },
-           {
-            col1 : "Toys, Books & Baby Products",
-            col2 : "12% "
-           },
-           {
-            col1 : "Daily Essentials ",
-            col2 : "3% "
-           },
-           {
-            col1 : "Sports & Fitness ",
-            col2 : "8% "
-           },
-           {
-            col1 : "Car, MotorBike, Industrial Tools ",
-            col2 : "5% "
-           },
-           {
-            col1 : "Hardware & Paint ",
-            col2 : "6% "
-           },
-           {
-            col1 : "Digital Items",
-            col2 : "10% "
-           },
-           {
-            col1 : "Handmade / Art ",
-            col2 : "14% "
-           },
-           {
-            col1 : "Fashion & Clothing",
-            col2 : "9% "
-           }
-    ]
     return (
         <div>
 

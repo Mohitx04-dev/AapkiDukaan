@@ -19,6 +19,7 @@ function CategoryPage() {
     },[id])
     const [StartV, setStartV] = useState(0)
     const [EndV, setEndV] = useState(20000)
+    Products.filter(el=> el.InStock)
     return (
         Products.length<1 ? <>
         No Products Found
@@ -29,7 +30,7 @@ function CategoryPage() {
             <SideElements StartV={StartV} EndV={EndV} setStartV={setStartV} setEndV={setEndV}/>
             <div className="mx-10 grid grid-cols-1 w-full">
             {Products.map(el=>{
-              if(el.InStock) return <ProductCardH product={el} key={el}/>
+               return <ProductCardH product={el} key={el}/>
             })}
             </div>
         </div>

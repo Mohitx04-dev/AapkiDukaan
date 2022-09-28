@@ -213,6 +213,14 @@ const AuthSE = (req,res,next) => {
     res.status(401).send('Unauthorised')
   }
 }
+const AuthSC = (req,res,next) => {
+  if(req.user.role==='Seller' || req.user.role==='Customer') {
+    next()
+  }
+  else{
+    res.status(401).send('Unauthorised')
+  }
+}
 // const CheckRole = (req,res,next)=>{
 //   if(role===req.body.role) {
 //     next()
@@ -309,6 +317,7 @@ module.exports = {
   AuthC,
   AuthAE,
   AuthSE,
+  AuthSC,
   userLogin,
   userRegister,
   serializeUser,
